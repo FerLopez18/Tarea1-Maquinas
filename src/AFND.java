@@ -71,6 +71,9 @@ public class AFND {
                         //Thomson de *
                         System.out.println("//Thomson de *");
                         Thomson thEst = new Thomson(stack.pop());
+                        thEst.imprimirThc();
+                        this.stack.push(thEst);
+                        s=thEst.sizeK();
                         break;
                     
                 }
