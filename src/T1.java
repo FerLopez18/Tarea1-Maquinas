@@ -19,6 +19,11 @@ public class T1 {
         
         System.out.println("ER: " + regex);
         System.out.println("Postfix: "+ postfixER);
+        ER er = new ER(postfixER);
+        
+        System.out.println("SIGMA: " + " "+ er.obtenerAlfabetoER());
+        AFND afnd = new AFND(er);
+     
     }
     
 }
