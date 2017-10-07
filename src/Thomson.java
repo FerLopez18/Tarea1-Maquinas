@@ -22,13 +22,13 @@ public class Thomson {
     private ArrayList<Integer>F;
     private HashMap<Integer,ArrayList<Transition>> delta;
 
-    Thomson(char c) {
+    Thomson(char c, int s) {
         this.K = new ArrayList<>();
         this.sigma = new ArrayList<>();
         this.F = new ArrayList<>();
         this.delta = new HashMap<>();
-        this.construirThc(c);
-        this.imprimirThc();
+        this.construirThc(c, s);
+   
     }
 
     Thomson(Thomson pop, Thomson pop0, char op) {
@@ -99,7 +99,7 @@ public class Thomson {
             }
             
         }
-        /*
+        
         System.out.println("INICIO: " + delta);
         
         if(this.delta.get(index)!=null){
@@ -110,11 +110,10 @@ public class Thomson {
                     t.setTarget(element);
                 }
             }
-            this.delta.put(element, delta.get(index));
-            delta.remove(index);
+            
         }
         System.out.println("FIN: "+delta);
-        */
+        
         return 1;
     }
     
@@ -138,16 +137,16 @@ public class Thomson {
         return sigma.remove(index);
     }
 
-    private void construirThc(char c) {
-        this.K.add(0);
-        this.K.add(1);
+    private void construirThc(char c, int s) {
+        this.K.add(s);
+        this.K.add(s+1);
         this.sigma.add(c);
-        this.s = 0;
-        this.F.add(1);
+        this.s = s;
+        this.F.add(s+1);
         ArrayList<Transition> t=new ArrayList<>();
-        t.add(new Transition(c,1));
-        this.delta.put(0, t);
-        this.delta.put(1, null);
+        t.add(new Transition(c,s+1));
+        this.delta.put(s, t);
+        this.delta.put(s+1, null);
     }
     
     public void imprimirThc(){
@@ -199,6 +198,8 @@ public class Thomson {
             
         }
         System.out.println("}");
+        
+        System.out.println("");
     }
 
     private void construirThOr(Thomson pop, Thomson pop0) {
@@ -207,6 +208,11 @@ public class Thomson {
 
     private void construirThConc(Thomson pop, Thomson pop0) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    int ultimoEstado() {
+        return this.K.get(K.size()-1);
+        
     }
 
   

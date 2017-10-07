@@ -27,7 +27,7 @@ public class AFND {
     }
     
     private void transformar(){
-        
+        int s=0;
         for (int i = 0; i < ER.lengthER(); i++) {
             
             //System.out.println(ER.charAtER(i));
@@ -36,8 +36,11 @@ public class AFND {
             if(this.ER.esDelAlfabetoDeER(c)){
                 //Thomson de un caracter
                 //System.out.println("Thomson de un caracter" + " " + c);
-                Thomson th = new Thomson(c);
+                Thomson th = new Thomson(c,s);
+                s = th.ultimoEstado()+1;
                 this.stack.push(th);
+                th.imprimirThc();
+  
             }
             else{
                 switch(c){
@@ -54,11 +57,11 @@ public class AFND {
                         System.out.println("//Thomson de or");
                         Thomson pop1 = stack.pop();
                         Thomson pop2 = stack.pop();
-                        this.renombrarEstados(pop1, pop2);
-                        System.out.println("");
-                        pop1.imprimirThc();
+  
                         System.out.println("");
                         pop2.imprimirThc();
+                        System.out.println("");
+                        pop1.imprimirThc();
                         Thomson thOr = new Thomson(pop1,pop2, c);
                         
                         break;
@@ -78,16 +81,6 @@ public class AFND {
         }
     }
 
-    private void renombrarEstados(Thomson pop, Thomson pop0) {
-        int n = pop.sizeK()-1;
-        for (Integer key : pop0.keySetDelta()) {
-            pop0.setK(key, n+1);
-            n+=1;
-        }
-    }
-
-    
-    
-    
+ 
     
 }
