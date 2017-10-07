@@ -51,6 +51,9 @@ public class AFND {
                         Thomson pop0 = stack.pop();
                         //this.renombrarEstados(pop, pop0);
                         Thomson thConc = new Thomson(pop,pop0, c);
+                        this.stack.push(thConc);
+                        thConc.imprimirThc();
+                        s=thConc.sizeK();
                        
                         break;
                     case '|':

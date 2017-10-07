@@ -244,7 +244,68 @@ public class Thomson {
     }
 
     private void construirThConc(Thomson pop, Thomson pop0) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        /*
+        Union de K de pop y pop 0, más un nodo inicial s1 y un nodo final f
+         */
+        for (int i = 0; i < pop0.sizeK(); i++) {
+            this.K.add(pop0.getK(i));
+        }
+        for (int i = 0; i < pop.sizeK(); i++) {
+            this.K.add(pop.getK(i));
+        }
+        int s1 = pop0.getK(0);
+        //this.K.add(s1);
+        int f = pop.getK(pop.sizeK()-1);
+        //this.K.add(f);
+
+        /*
+        Sigma
+         */
+        for (int i = 0; i < pop0.sizesigma(); i++) {
+            this.sigma.add(pop0.getSigma(i));
+
+        }
+        for (int i = 0; i < pop.sizesigma(); i++) {
+            this.sigma.add(pop.getSigma(i));
+        }
+        
+        /*
+        Union de las relaciones de transicion
+         */
+        for (Integer key : pop0.keySetDelta()) {
+            ArrayList<Transition> transition = new ArrayList<>();
+            if (pop0.getTransitions(key) != null) {
+                for (Transition t : pop0.getTransitions(key)) {
+                    transition.add(t);
+                }
+            }
+
+            this.delta.put(key, transition);
+
+        }
+        for (Integer key : pop.keySetDelta()) {
+            ArrayList<Transition> transition = new ArrayList<>();
+            if (pop.getTransitions(key) != null){
+                for (Transition t : pop.getTransitions(key)) {
+                    transition.add(t);
+                }
+            }
+                
+            this.delta.put(key, transition);
+        }
+        
+        ArrayList<Transition> taux = new ArrayList<>();
+        taux.add(new Transition('-',pop.getS()));
+        this.delta.put(pop0.getF(0),taux);
+        
+        /*
+        s
+         */
+        this.s = s1;
+        /*
+        f
+         */
+        this.F.add(f);
     }
 
     int ultimoEstado() {
