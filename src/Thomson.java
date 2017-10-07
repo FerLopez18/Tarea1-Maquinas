@@ -40,6 +40,24 @@ public class Thomson {
         }
     }
     
+    public int sizeDelta(){
+        return this.delta.size();
+    }
+    
+    public boolean isEmptyDelta(){
+        return this.delta.isEmpty();
+    }
+    
+    public ArrayList<Transition> getDelta(int estado){
+        return this.delta.get(estado);
+    }
+    
+    public boolean containsKeyDelta(int estado){
+        return this.delta.containsKey(estado);
+    }
+    
+ 
+    
     Thomson(Thomson pop){
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 
