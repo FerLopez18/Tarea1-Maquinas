@@ -9,15 +9,34 @@
  * @author fernanda
  */
 public class Transition {
-    String l;
+    Character l;
     Integer target;
     
-    public Transition(String lab, Integer target) 
+    public Transition(Character lab, Integer target) 
     { this.l = lab; this.target = target; }
     
     public String toString() {
       return "-" + l + "-> " + target;
     }
+
+    public Character getL() {
+        return l;
+    }
+
+    public void setL(Character l) {
+        this.l = l;
+    }
+
+    public Integer getTarget() {
+        return target;
+    }
+
+    public void setTarget(Integer target) {
+        this.target = target;
+    }
+    
+    
+    
   }
     
 
