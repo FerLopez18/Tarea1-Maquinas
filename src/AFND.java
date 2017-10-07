@@ -80,8 +80,9 @@ public class AFND {
 
     private void renombrarEstados(Thomson pop, Thomson pop0) {
         int n = pop.sizeK()-1;
-        for (int i = 0; i < pop0.sizeK(); i++, n++) {
-            pop0.setK(i, n+1);
+        for (Integer key : pop0.keySetDelta()) {
+            pop0.setK(key, n+1);
+            n+=1;
         }
     }
 

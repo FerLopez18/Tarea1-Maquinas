@@ -2,6 +2,7 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -81,6 +82,11 @@ public class Thomson {
         return K.add(e);
     }
 
+    public Set<Integer> keySetDelta() {
+        return delta.keySet();
+    }
+    
+    
     public Integer setK(int index, Integer element) {
         K.set(index, element);
         if(s==index){
@@ -93,19 +99,22 @@ public class Thomson {
             }
             
         }
+        /*
+        System.out.println("INICIO: " + delta);
         
-        for (int i = 0; i < this.delta.size(); i++) {
-            if(delta.get(i)!=null){
-                for (Transition transition : delta.get(i)) {
-                    if(transition.getTarget() == index){
-                        transition.setTarget(element);
-                    }
+        if(this.delta.get(index)!=null){
+            for (Transition t : this.delta.get(index)) {
+                System.out.println("bla :: "+t.getTarget()+","+index);
+                if(t.getTarget() == index){
+                    
+                    t.setTarget(element);
                 }
-                this.delta.put(element, delta.get(i));
-                delta.remove(index);
             }
-            
+            this.delta.put(element, delta.get(index));
+            delta.remove(index);
         }
+        System.out.println("FIN: "+delta);
+        */
         return 1;
     }
     
@@ -138,6 +147,7 @@ public class Thomson {
         ArrayList<Transition> t=new ArrayList<>();
         t.add(new Transition(c,1));
         this.delta.put(0, t);
+        this.delta.put(1, null);
     }
     
     public void imprimirThc(){
@@ -166,17 +176,16 @@ public class Thomson {
         System.out.println("}");
         System.out.println("Delta:");
         
-        for (int i = 0; i < this.delta.size(); i++) {
-            ArrayList<Transition> transition = delta.get(i);
-            if(transition !=null){
-                for (Transition transition1 : transition) {
-                System.out.println("(q"+i+","+transition1.getL()+ ",q"+transition1.getTarget()+")");
+        for (Integer key : this.delta.keySet()) {
+            if(this.delta.get(key)!=null)
+            {
+               for (Transition t : this.delta.get(key)) {
+                    System.out.println("(q"+key+","+t.getL()+ ",q"+t.getTarget()+")");
+                } 
             }
-                
-            }
-            
             
         }
+        
         System.out.println("s=q"+this.s);
         System.out.print("F={");
         for (int i = 0; i < this.F.size(); i++) {
