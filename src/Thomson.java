@@ -33,7 +33,6 @@ public class Thomson {
 
     Thomson(Thomson pop, Thomson pop0, char op) {
         if(op =='|'){
-            System.out.println("or");
             this.construirThOr(pop, pop0);
         }
         else{
@@ -85,37 +84,7 @@ public class Thomson {
     public Set<Integer> keySetDelta() {
         return delta.keySet();
     }
-    
-    
-    public Integer setK(int index, Integer element) {
-        K.set(index, element);
-        if(s==index){
-            s = element;
-        }
-        
-        for (int i = 0; i < this.sizeF(); i++) {
-            if(this.getF(i) == index){
-                F.set(i, element);
-            }
-            
-        }
-        
-        System.out.println("INICIO: " + delta);
-        
-        if(this.delta.get(index)!=null){
-            for (Transition t : this.delta.get(index)) {
-                System.out.println("bla :: "+t.getTarget()+","+index);
-                if(t.getTarget() == index){
-                    
-                    t.setTarget(element);
-                }
-            }
-            
-        }
-        System.out.println("FIN: "+delta);
-        
-        return 1;
-    }
+ 
     
     public Integer removeK(int index) {
         return K.remove(index);
@@ -203,7 +172,8 @@ public class Thomson {
     }
 
     private void construirThOr(Thomson pop, Thomson pop0) {
-        System.out.println("ns");
+       throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
     }
 
     private void construirThConc(Thomson pop, Thomson pop0) {
