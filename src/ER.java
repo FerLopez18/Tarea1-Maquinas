@@ -26,7 +26,7 @@ public class ER {
         op.add('.');
         op.add('|');
         op.add('*');
-        
+       
         this.obtenerAlfabeto();
     }
     
@@ -38,7 +38,7 @@ public class ER {
             }
             
         }
-        this.alfabetoER.add('$');
+        //this.alfabetoER.add('$');
     }
     
     public ArrayList<Character> obtenerOperadores(){
