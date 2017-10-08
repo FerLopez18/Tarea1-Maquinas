@@ -84,6 +84,11 @@ public class AFND {
             
             
         }
+        System.out.println("RESULTADO FINAL");
+        Thomson item = this.stack.pop();
+        item.agregarRizo();
+        this.stack.push(item);
+        this.stack.pop().imprimirThc();
     }
 
  

@@ -388,4 +388,15 @@ public class Thomson {
         this.F.add(qf);
     }
 
+    void agregarRizo() {
+        for (Character ch : this.sigma) {         
+            Transition aux = new Transition(ch, this.getS());
+            this.delta.get(this.getS()).add(aux);
+        }
+        Transition aux2 = new Transition('$', this.getS());
+        this.delta.get(this.getS()).add(aux2);
+        
+    }
+    
+    
 }
