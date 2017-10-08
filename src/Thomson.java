@@ -183,9 +183,10 @@ public class Thomson {
             this.K.add(pop0.getK(i));
         }
         for (int i = 0; i < pop.sizeK(); i++) {
+
             this.K.add(pop.getK(i));
         }
-        int s1 = pop.ultimoEstado()+1;
+        int s1 = pop.ultimoEstado() + 1;
         this.K.add(s1);
         int f = s1 + 1;
         this.K.add(f);
@@ -194,11 +195,16 @@ public class Thomson {
         Sigma
          */
         for (int i = 0; i < pop0.sizesigma(); i++) {
-            this.sigma.add(pop0.getSigma(i));
+            if (!this.sigma.contains(pop0.getSigma(i))) {
+                this.sigma.add(pop0.getSigma(i));
+            }
 
         }
         for (int i = 0; i < pop.sizesigma(); i++) {
-            this.sigma.add(pop.getSigma(i));
+            if (!this.sigma.contains(pop.getSigma(i))) {
+                this.sigma.add(pop.getSigma(i));
+            }
+
         }
 
         /*
@@ -217,23 +223,23 @@ public class Thomson {
         }
         for (Integer key : pop.keySetDelta()) {
             ArrayList<Transition> transition = new ArrayList<>();
-            if (pop.getTransitions(key) != null){
+            if (pop.getTransitions(key) != null) {
                 for (Transition t : pop.getTransitions(key)) {
                     transition.add(t);
                 }
             }
-                
+
             this.delta.put(key, transition);
         }
         ArrayList<Transition> taux = new ArrayList<>();
-        taux.add(new Transition('-',pop0.getS()));
-        taux.add(new Transition('-',pop.getS()));
-        this.delta.put(s1,taux);
-        
-        ArrayList<Transition> taux1 = new ArrayList<>();
-        taux1.add(new Transition('-',f));
+        taux.add(new Transition('-', pop0.getS()));
+        taux.add(new Transition('-', pop.getS()));
+        this.delta.put(s1, taux);
 
-        this.delta.put(pop0.getF(0),taux1);
+        ArrayList<Transition> taux1 = new ArrayList<>();
+        taux1.add(new Transition('-', f));
+
+        this.delta.put(pop0.getF(0), taux1);
         this.delta.put(pop.getF(0), taux1);
         /*
         s
@@ -258,20 +264,25 @@ public class Thomson {
         }
         int s1 = pop0.getK(0);
         //this.K.add(s1);
-        int f = pop.getK(pop.sizeK()-1);
+        int f = pop.getK(pop.sizeK() - 1);
         //this.K.add(f);
 
         /*
         Sigma
          */
         for (int i = 0; i < pop0.sizesigma(); i++) {
-            this.sigma.add(pop0.getSigma(i));
+            if (!this.sigma.contains(pop0.getSigma(i))) {
+                this.sigma.add(pop0.getSigma(i));
+            }
 
         }
         for (int i = 0; i < pop.sizesigma(); i++) {
-            this.sigma.add(pop.getSigma(i));
+            if (!this.sigma.contains(pop.getSigma(i))) {
+                this.sigma.add(pop.getSigma(i));
+            }
+
         }
-        
+
         /*
         Union de las relaciones de transicion
          */
@@ -288,19 +299,19 @@ public class Thomson {
         }
         for (Integer key : pop.keySetDelta()) {
             ArrayList<Transition> transition = new ArrayList<>();
-            if (pop.getTransitions(key) != null){
+            if (pop.getTransitions(key) != null) {
                 for (Transition t : pop.getTransitions(key)) {
                     transition.add(t);
                 }
             }
-                
+
             this.delta.put(key, transition);
         }
-        
+
         ArrayList<Transition> taux = new ArrayList<>();
-        taux.add(new Transition('-',pop.getS()));
-        this.delta.put(pop0.getF(0),taux);
-        
+        taux.add(new Transition('-', pop.getS()));
+        this.delta.put(pop0.getF(0), taux);
+
         /*
         s
          */
@@ -317,27 +328,30 @@ public class Thomson {
     }
 
     private void contruirThEstrella(Thomson pop) {
-        
+
         /*
         K 
          */
         for (int i = 0; i < pop.sizeK(); i++) {
             this.K.add(pop.getK(i));
-    
-        }  
-        int qi = pop.ultimoEstado()+1;
+
+        }
+        int qi = pop.ultimoEstado() + 1;
         this.K.add(qi);
         int qf = qi + 1;
         this.K.add(qf);
-        
+
         int s1 = pop.getS();
         Integer f1 = pop.getF(0);
-        
+
         /*
         Sigma
          */
         for (int i = 0; i < pop.sizesigma(); i++) {
-            this.sigma.add(pop.getSigma(i));
+            if(!this.sigma.contains(pop.getSigma(i))){
+                this.sigma.add(pop.getSigma(i));
+            }
+            
 
         }
 
@@ -353,18 +367,17 @@ public class Thomson {
             }
             this.delta.put(key, transition);
         }
- 
+
         ArrayList<Transition> taux = new ArrayList<>();
-        taux.add(new Transition('-',s1));
-        taux.add(new Transition('-',qf));
-        this.delta.put(qi,taux);
-        
+        taux.add(new Transition('-', s1));
+        taux.add(new Transition('-', qf));
+        this.delta.put(qi, taux);
+
         ArrayList<Transition> taux2 = new ArrayList<>();
-        taux2.add(new Transition('-',qf));
-        taux2.add(new Transition('-',s1));
-        this.delta.put(f1,taux2);
-        
-        
+        taux2.add(new Transition('-', qf));
+        taux2.add(new Transition('-', s1));
+        this.delta.put(f1, taux2);
+
         /*
         s
          */
