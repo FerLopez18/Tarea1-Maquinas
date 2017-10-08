@@ -243,12 +243,12 @@ public class Thomson {
             this.delta.put(key, transition);
         }
         ArrayList<Transition> taux = new ArrayList<>();
-        taux.add(new Transition('-', pop0.getS()));
-        taux.add(new Transition('-', pop.getS()));
+        taux.add(new Transition('_', pop0.getS()));
+        taux.add(new Transition('_', pop.getS()));
         this.delta.put(s1, taux);
 
         ArrayList<Transition> taux1 = new ArrayList<>();
-        taux1.add(new Transition('-', f));
+        taux1.add(new Transition('_', f));
 
         this.delta.put(pop0.getF(0), taux1);
         this.delta.put(pop.getF(0), taux1);
@@ -320,7 +320,7 @@ public class Thomson {
         }
 
         ArrayList<Transition> taux = new ArrayList<>();
-        taux.add(new Transition('-', pop.getS()));
+        taux.add(new Transition('_', pop.getS()));
         this.delta.put(pop0.getF(0), taux);
 
         /*
@@ -380,13 +380,13 @@ public class Thomson {
         }
 
         ArrayList<Transition> taux = new ArrayList<>();
-        taux.add(new Transition('-', s1));
-        taux.add(new Transition('-', qf));
+        taux.add(new Transition('_', s1));
+        taux.add(new Transition('_', qf));
         this.delta.put(qi, taux);
 
         ArrayList<Transition> taux2 = new ArrayList<>();
-        taux2.add(new Transition('-', qf));
-        taux2.add(new Transition('-', s1));
+        taux2.add(new Transition('_', qf));
+        taux2.add(new Transition('_', s1));
         this.delta.put(f1, taux2);
 
         /*
