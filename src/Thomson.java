@@ -141,9 +141,9 @@ public class Thomson {
         System.out.print("K={");
         for (int i = 0; i < K.size(); i++) {
             if (i == K.size() - 1) {
-                System.out.print(K.get(i));
+                System.out.print("q"+K.get(i));
             } else {
-                System.out.print(K.get(i) + ",");
+                System.out.print("q"+K.get(i) + ",");
             }
 
         }
