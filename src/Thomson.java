@@ -43,8 +43,11 @@ public class Thomson {
     }
 
     Thomson(Thomson pop) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-
+        this.K = new ArrayList<>();
+        this.sigma = new ArrayList<>();
+        this.F = new ArrayList<>();
+        this.delta = new HashMap<>();
+        this.contruirThEstrella(pop);
     }
 
     public int getS() {
@@ -182,7 +185,7 @@ public class Thomson {
         for (int i = 0; i < pop.sizeK(); i++) {
             this.K.add(pop.getK(i));
         }
-        int s1 = this.K.size();
+        int s1 = pop.ultimoEstado()+1;
         this.K.add(s1);
         int f = s1 + 1;
         this.K.add(f);
@@ -311,6 +314,65 @@ public class Thomson {
     int ultimoEstado() {
         return this.K.get(K.size() - 1);
 
+    }
+
+    private void contruirThEstrella(Thomson pop) {
+        
+        /*
+        K 
+         */
+        for (int i = 0; i < pop.sizeK(); i++) {
+            this.K.add(pop.getK(i));
+    
+        }  
+        int qi = pop.ultimoEstado()+1;
+        this.K.add(qi);
+        int qf = qi + 1;
+        this.K.add(qf);
+        
+        int s1 = pop.getS();
+        Integer f1 = pop.getF(0);
+        
+        /*
+        Sigma
+         */
+        for (int i = 0; i < pop.sizesigma(); i++) {
+            this.sigma.add(pop.getSigma(i));
+
+        }
+
+        /*
+        Union de las relaciones de transicion
+         */
+        for (Integer key : pop.keySetDelta()) {
+            ArrayList<Transition> transition = new ArrayList<>();
+            if (pop.getTransitions(key) != null) {
+                for (Transition t : pop.getTransitions(key)) {
+                    transition.add(t);
+                }
+            }
+            this.delta.put(key, transition);
+        }
+ 
+        ArrayList<Transition> taux = new ArrayList<>();
+        taux.add(new Transition('-',s1));
+        taux.add(new Transition('-',qf));
+        this.delta.put(qi,taux);
+        
+        ArrayList<Transition> taux2 = new ArrayList<>();
+        taux2.add(new Transition('-',qf));
+        taux2.add(new Transition('-',s1));
+        this.delta.put(f1,taux2);
+        
+        
+        /*
+        s
+         */
+        this.s = qi;
+        /*
+        f
+         */
+        this.F.add(qf);
     }
 
 }

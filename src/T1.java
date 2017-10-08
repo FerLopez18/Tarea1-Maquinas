@@ -14,7 +14,7 @@ public class T1 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        String regex = "a.b.c.d";
+        String regex = "(a.b|a.b.a)*";
         String postfixER = InfixToPostfix.infixToPostfix(regex);
         
         System.out.println("ER: " + regex);

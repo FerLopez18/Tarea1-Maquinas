@@ -37,7 +37,7 @@ public class AFND {
                 //Thomson de un caracter
                 //System.out.println("Thomson de un caracter" + " " + c);
                 Thomson th = new Thomson(c,s);
-                s = th.sizeK();
+                s = th.ultimoEstado()+1;
                 this.stack.push(th);
                 th.imprimirThc();
   
@@ -53,7 +53,7 @@ public class AFND {
                         Thomson thConc = new Thomson(pop,pop0, c);
                         this.stack.push(thConc);
                         thConc.imprimirThc();
-                        s=thConc.sizeK();
+                        s=thConc.ultimoEstado()+1;
                        
                         break;
                     case '|':
@@ -64,7 +64,7 @@ public class AFND {
                         Thomson thOr = new Thomson(pop1,pop2, c);
                         thOr.imprimirThc();
                         this.stack.push(thOr);
-                        s=thOr.sizeK();
+                        s=thOr.ultimoEstado()+1;
                         break;
                         
                     case '*':
@@ -73,7 +73,7 @@ public class AFND {
                         Thomson thEst = new Thomson(stack.pop());
                         thEst.imprimirThc();
                         this.stack.push(thEst);
-                        s=thEst.sizeK();
+                        s=thEst.ultimoEstado()+1;
                         break;
                     
                 }
