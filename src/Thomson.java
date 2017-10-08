@@ -49,6 +49,17 @@ public class Thomson {
         this.delta = new HashMap<>();
         this.contruirThEstrella(pop);
     }
+    
+    /*
+    Constructor cuando el caracter leido es phi
+    */
+    Thomson(int s) {
+        this.K = new ArrayList<>();
+        this.sigma = new ArrayList<>();
+        this.F = new ArrayList<>();
+        this.delta = new HashMap<>();
+        this.construirThPhi(s);
+    }
 
     public int getS() {
         return s;
@@ -395,6 +406,17 @@ public class Thomson {
         }
         Transition aux2 = new Transition('$', this.getS());
         this.delta.get(this.getS()).add(aux2);
+        
+    }
+
+    private void construirThPhi(int s) {
+        
+        this.K.add(s);
+        this.K.add(s + 1);
+        this.s = s;
+        this.F.add(s + 1);    
+        this.delta.put(s, new ArrayList<>());
+        this.delta.put(s + 1, new ArrayList<>());
         
     }
     

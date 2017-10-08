@@ -17,8 +17,8 @@ public class T1 {
         String regex = "a.b";
         String postfixER = InfixToPostfix.infixToPostfix(regex);
         
-        System.out.println("ER: " + regex);
-        System.out.println("Postfix: "+ postfixER);
+        //System.out.println("ER: " + regex);
+        //System.out.println("Postfix: "+ postfixER);
         ER er = new ER(postfixER);
         
         AFND afnd = new AFND(er);

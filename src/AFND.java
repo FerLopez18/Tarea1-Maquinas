@@ -33,49 +33,56 @@ public class AFND {
             //System.out.println(ER.charAtER(i));
             
             char c = ER.charAtER(i);
-            if(this.ER.esDelAlfabetoDeER(c)){
+            if(c == '~'){
+                //System.out.println("//Thomson de phi");
+                Thomson thPhi = new Thomson(s);
+                //thPhi.imprimirThc();
+                this.stack.push(thPhi);
+                s=thPhi.ultimoEstado()+1;
+            }
+            else if(this.ER.esDelAlfabetoDeER(c)){
                 //Thomson de un caracter
                 //System.out.println("Thomson de un caracter" + " " + c);
                 Thomson th = new Thomson(c,s);
                 s = th.ultimoEstado()+1;
                 this.stack.push(th);
-                th.imprimirThc();
+                //th.imprimirThc();
   
             }
             else{
                 switch(c){
                     case '.': 
                         //Thomson de concatenacion
-                        System.out.println("Thomson de concatenacion");
+                        //System.out.println("Thomson de concatenacion");
                         Thomson pop = stack.pop();
                         Thomson pop0 = stack.pop();
                         //this.renombrarEstados(pop, pop0);
                         Thomson thConc = new Thomson(pop,pop0, c);
                         this.stack.push(thConc);
-                        thConc.imprimirThc();
+                        //thConc.imprimirThc();
                         s=thConc.ultimoEstado()+1;
                        
                         break;
                     case '|':
                         //Thomson de or
-                        System.out.println("//Thomson de or");
+                        //System.out.println("//Thomson de or");
                         Thomson pop1 = stack.pop();
                         Thomson pop2 = stack.pop();
                         Thomson thOr = new Thomson(pop1,pop2, c);
-                        thOr.imprimirThc();
+                        //thOr.imprimirThc();
                         this.stack.push(thOr);
                         s=thOr.ultimoEstado()+1;
                         break;
                         
                     case '*':
                         //Thomson de *
-                        System.out.println("//Thomson de *");
+                        //System.out.println("//Thomson de *");
                         Thomson thEst = new Thomson(stack.pop());
-                        thEst.imprimirThc();
+                        //thEst.imprimirThc();
                         this.stack.push(thEst);
                         s=thEst.ultimoEstado()+1;
                         break;
-                    
+
                 }
                 
                         
@@ -84,7 +91,7 @@ public class AFND {
             
             
         }
-        System.out.println("RESULTADO FINAL");
+        System.out.println("AFND:");
         Thomson item = this.stack.pop();
         item.agregarRizo();
         this.stack.push(item);
